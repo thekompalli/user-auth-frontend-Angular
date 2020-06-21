@@ -3,7 +3,7 @@
         <h1>Wemi<span>X</span></h1>
     </div>
     <mat-card class="insider">
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <mat-spinner color="primary" *ngIf="isLoading"></mat-spinner>
         <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
           <mat-form-field>
             <input matInput name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
@@ -18,7 +18,9 @@
       </mat-card>
       <div class="mt-4 text-center">
         <h1>Already a User?</h1>
-        <button routerLink = "/login" class="btn btn-outline-dark">Login</button>
+        <a routerLink = "/expired" class="mr-5">Link expired?</a>
+        <button routerLink = "/login" class="btn btn-outline-dark">Login</button>      
+        <a routerLink = "/forgot-password" class="ml-5">Forgot password?</a>
     </div>
 </div>
 

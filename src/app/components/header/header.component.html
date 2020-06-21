@@ -1,11 +1,19 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
     <span>
-      <a>wemiX</a>
+      <a color="accent">wemiX</a>
     </span>
     <span class="spacer"></span>
     <ul>
       <li>
-        <button mat-fab color="warn" aria-label="Example icon button with a home icon" (click) = "onLogout()">
+        <button mat-button>
+          Settings
+        </button>
+      </li>
+    </ul>
+    <span class="spacer"></span>
+    <ul>
+      <li>
+        <button mat-fab color="primary" (click) = "onLogout()">
             <mat-icon>home</mat-icon>
           </button>
       </li>

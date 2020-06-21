@@ -18,6 +18,9 @@ import {  MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
+import { EmailExpireComponent } from './components/email-expire/email-expire.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
     SignupComponent,
     LoginComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    EmailExpireComponent,
+    ForgotPasswordComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,

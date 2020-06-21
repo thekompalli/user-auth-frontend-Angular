@@ -13,6 +13,7 @@ export class AuthServiceService {
   private tokenTimer:any
   private currentUserData;
   me;
+ 
 
   constructor(private http: HttpClient, private router:Router) { }
 
@@ -59,8 +60,8 @@ export class AuthServiceService {
           this.router.navigate(["/dashboard"])
         }
       }, err => {
-        this.router.navigate(["/"])
         alert(err.error.message)
+        window.location.reload()
       })
   }
 
@@ -101,6 +102,46 @@ export class AuthServiceService {
       this.authStatus.next(true);
     }
   }
+
+
+  resend(email:string){
+    this.http.post('http://localhost:3000/resend-mail', email)
+    .subscribe(res => {
+      alert(res['message'])
+      this.router.navigate(["/"]);
+    }, 
+    err => {
+      console.log(err)
+    })
+  }
+
+
+  forgotPass(email:string){
+    this.http.post('http://localhost:3000/forgot-pass', email)
+    .subscribe(res => {
+      console.log(res)
+      this.router.navigate(["/"])
+    },
+    err => {
+      console.log(err)
+    })
+  }
+
+
+  verifyForgot(token, email){
+    return this.http.get(`http://localhost:3000/verify-pass-reset/${token}/${email}`)
+  }
+
+  resetPass(data:any){
+    this.http.post('http://localhost:3000/reset-pass', data)
+    .subscribe(res => {
+    console.log(res)
+    }, err => {
+      console.log(err)
+    })
+    this.router.navigate(["/"])
+  }
+
 
   private setAuthTimer(duration: number) {
     console.log("Setting timer: " + duration);

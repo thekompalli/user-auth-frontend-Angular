@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(public auth:AuthServiceService, private router:Router) { }
 
   ngOnInit(): void {
-    console.log("Pre" +this.auth.getToken())
+
   }
   isLoading = false;
 
