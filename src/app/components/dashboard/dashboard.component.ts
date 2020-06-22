@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ShortUrlService } from './../../services/short-url.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { Subscription } from 'rxjs';
@@ -12,7 +15,9 @@ export class DashboardComponent implements OnInit {
   public isAuthenticated = false;
   private authListener:Subscription;
   name;
-  constructor(private authService: AuthServiceService) { }
+  shortUrlData;
+  isData = false;
+  constructor(private authService: AuthServiceService, public surl:ShortUrlService, private router:Router) { }
 
   ngOnInit(): void {
     
@@ -24,6 +29,16 @@ export class DashboardComponent implements OnInit {
     )
     this.name = this.authService.me;
     
+  }
+
+
+   getShrink(url: NgForm){
+    if (url.invalid) {
+      return;
+    }
+    console.log(url.value)
+    this.surl.shrinkUrl(url.value)
+    this.isData = true
   }
 
 }
