@@ -30,7 +30,7 @@ export class AuthServiceService {
   createUser(email: string, password: string) {
     const authData: AuthData = { email: email, password: password };
     this.http
-      .post("http://localhost:3000/users", authData)
+      .post("https://url-shrinker-auth.herokuapp.com/users", authData)
       .subscribe(response => {
         this.router.navigate(["/"])
         console.log(response);
@@ -43,7 +43,7 @@ export class AuthServiceService {
   loginUser(email: string, password: string){
     const authData: AuthData = { email: email, password: password };
     this.http
-      .post<{user:any, token:string, expiresIn:number}>("http://localhost:3000/users/login", authData)
+      .post<{user:any, token:string, expiresIn:number}>("https://url-shrinker-auth.herokuapp.com/login", authData)
       .subscribe(response => {
         const token = response.token;
         this.token = token;
@@ -66,7 +66,7 @@ export class AuthServiceService {
   }
 
   currentUser(){
-    this.http.get('http://localhost:3000/users/current-user')
+    this.http.get('https://url-shrinker-auth.herokuapp.com/current-user')
     .subscribe(userData => {
     this.currentUserData = userData
     })
@@ -74,7 +74,7 @@ export class AuthServiceService {
 
 
   logout(){
-    this.http.post<{message:string}>('http://localhost:3000/users/logout', this.currentUserData)
+    this.http.post<{message:string}>('https://url-shrinker-auth.herokuapp.com/logout', this.currentUserData)
     .subscribe(data =>{
       console.log(data.message);
       this.token = null;
@@ -105,7 +105,7 @@ export class AuthServiceService {
 
 
   resend(email:string){
-    this.http.post('http://localhost:3000/resend-mail', email)
+    this.http.post('https://url-shrinker-auth.herokuapp.com/resend-mail', email)
     .subscribe(res => {
       alert(res['message'])
       this.router.navigate(["/"]);
@@ -117,7 +117,7 @@ export class AuthServiceService {
 
 
   forgotPass(email:string){
-    this.http.post('http://localhost:3000/forgot-pass', email)
+    this.http.post('https://url-shrinker-auth.herokuapp.com/forgot-pass', email)
     .subscribe(res => {
       console.log(res)
       this.router.navigate(["/"])
@@ -129,11 +129,11 @@ export class AuthServiceService {
 
 
   verifyForgot(token, email){
-    return this.http.get(`http://localhost:3000/verify-pass-reset/${token}/${email}`)
+    return this.http.get(`https://url-shrinker-auth.herokuapp.com/verify-pass-reset/${token}/${email}`)
   }
 
   resetPass(data:any){
-    this.http.post('http://localhost:3000/reset-pass', data)
+    this.http.post('https://url-shrinker-auth.herokuapp.com/reset-pass', data)
     .subscribe(res => {
     console.log(res)
     }, err => {
