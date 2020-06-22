@@ -20,8 +20,6 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthServiceService, public surl:ShortUrlService, private router:Router) { }
 
   ngOnInit(): void {
-    
-    console.log("on"+ this.authService.getToken())
     this.authService.getAuthStatus().subscribe(
       authStatus =>{
         console.log(authStatus)

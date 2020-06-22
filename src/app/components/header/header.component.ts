@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
 
   onLogout(){
     this.auth.logout()
-    console.log("post"+ this.auth.getToken())
   }
 
 }

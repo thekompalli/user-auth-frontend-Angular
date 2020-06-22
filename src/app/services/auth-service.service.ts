@@ -43,7 +43,7 @@ export class AuthServiceService {
   loginUser(email: string, password: string){
     const authData: AuthData = { email: email, password: password };
     this.http
-      .post<{user:any, token:string, expiresIn:number}>("https://url-shrinker-auth.herokuapp.com/login", authData)
+      .post<{user:any, token:string, expiresIn:number}>("https://url-shrinker-auth.herokuapp.com/users/login", authData)
       .subscribe(response => {
         const token = response.token;
         this.token = token;
@@ -66,7 +66,7 @@ export class AuthServiceService {
   }
 
   currentUser(){
-    this.http.get('https://url-shrinker-auth.herokuapp.com/current-user')
+    this.http.get('https://url-shrinker-auth.herokuapp.com/users/current-user')
     .subscribe(userData => {
     this.currentUserData = userData
     })
@@ -74,7 +74,7 @@ export class AuthServiceService {
 
 
   logout(){
-    this.http.post<{message:string}>('https://url-shrinker-auth.herokuapp.com/logout', this.currentUserData)
+    this.http.post<{message:string}>('https://url-shrinker-auth.herokuapp.com/users/logout', this.currentUserData)
     .subscribe(data =>{
       console.log(data.message);
       this.token = null;
