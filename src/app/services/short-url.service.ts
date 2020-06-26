@@ -14,7 +14,7 @@ export class ShortUrlService {
 
   shrinkUrl(url){
     let lst = [];
-    this.http.post('http://localhost:5000/shorten', url)
+    this.http.post('https://short-url-gen.herokuapp.com/shorten', url)
     .subscribe((res) => {
         lst.push(res)    
         this.shortUrlData = lst
